@@ -65,6 +65,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/error", "/favicon.ico").permitAll()
                         .requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/customer/promotions/**").permitAll()
+                        .requestMatchers("/api/customer/shop/products/**").permitAll()
 
                         .requestMatchers("/api/upload/**").hasAnyRole("ADMIN", "CUSTOMER")
 

@@ -283,9 +283,11 @@ public class DashboardRepository {
 
             GROUP BY p.id, p.name, p.stock_qty
 
-            HAVING days_since_last_sale >= ? OR days_since_last_sale IS NULL
+            HAVING DATEDIFF(CURDATE(), MAX(DATE(o.created_at))) >= ?
+                OR MAX(DATE(o.created_at)) IS NULL
 
-            ORDER BY days_since_last_sale IS NULL DESC, days_since_last_sale DESC
+            ORDER BY MAX(DATE(o.created_at)) IS NULL DESC,
+                     DATEDIFF(CURDATE(), MAX(DATE(o.created_at))) DESC
 
             LIMIT ?
         """;
